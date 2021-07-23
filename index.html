@@ -1,0 +1,128 @@
+<!DOCTYPE HTML>
+<!--
+	Aerial 1.0 by HTML5 UP
+	html5up.net | @n33co
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>家有一只小可爱</title>
+		<link rel="icon" type="image/png" href="https://heyzyliu.github.io/leodon/logo_leo.jpg"/>
+		<meta http-equiv="content-type" content="*; charset=utf-8" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<!--[if lte IE 8]><script src="css/ie/html5shiv.js"></script><![endif]-->
+		<script src="js/skel.min.js"></script>
+		<script src="js/init.js"></script>
+		<noscript>
+			<link rel="stylesheet" href="css/skel.css" />
+			<link rel="stylesheet" href="css/style.css" />
+			<link rel="stylesheet" href="css/style-wide.css" />
+			<link rel="stylesheet" href="css/style-noscript.css" />
+		</noscript>
+		<!--[if lte IE 9]><link rel="stylesheet" href="css/ie/v9.css" /><![endif]-->
+		<!--[if lte IE 8]><link rel="stylesheet" href="css/ie/v8.css" /><![endif]-->
+	</head>
+	<body class="loading">
+		<div id="wrapper">
+			<div id="bg" style="display: none;" class="phone-class"></div>
+			<video src=	"./public/3.mp4"
+			class="pc-class" loop width="100%"
+			 height="110%" autoplay="autoplay" muted="muted" cue-before:none; id="sp"></video>
+			<div id="overlay"></div>
+			<div id="main">
+
+				<!-- Header -->
+				<header id="header">
+					<h1>Leodon</h1>
+					<!-- <p>Security Chief &nbsp;&bull;&nbsp; Cyborg &nbsp;&bull;&nbsp; Never asked for this</p> -->
+					<p>别犹豫，冲！</p>
+					<nav>
+						<ul>
+							<li><a href="https://heyzyliu.github.io/leodon/" class="fa fa-home"><span class="label">Home</span></a></li>
+							<li><a href="https://www.google.com/" class="fa fa-google-plus"><span class="label">Google</span></a></li>
+							<li><a href="https://www.baidu.com/" class="fa fa-search"><span class="label">Baidu</span></a></li>
+							<li><a href="https://github.com/" class="fa fa-github-alt"><span class="label">GitHub</span></a></li>
+							<li><a href="https://mail.nwpu.edu.cn/" class="fa fa-envelope"><span class="label">Email</span></a></li>
+						</ul>
+					</nav>
+				</header>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<div>
+							<img src="./public/close.png" onclick="changeVal()" class="ival" style="margin-right:2rem ;" id="voice"/>
+							<img src="./public/play.png" onclick="ispaly()" class="ival" id="bofang"/>
+							<img src="./public/next.png" onclick="nextPaly()" class="ival" style="margin-left:2rem ;" id="next"/>
+						</div>
+					</footer>
+				
+			</div>
+		</div>
+	</body>
+	<script>
+		const srcs = [
+			"./public/3.mp4"
+		]
+		function changeVal(){
+			var voice=document.querySelector("#voice");
+			var video=document.querySelector("#sp");
+			if(video.muted) {
+				video.muted=false;
+				voice.setAttribute("src","./public/open.png");
+			}else{
+				video.muted=true;
+				voice.setAttribute("src","./public/close.png");
+			}
+		}
+		//播放暂停
+		function ispaly(){
+			var bofang=document.querySelector("#bofang");
+			var video=document.querySelector("#sp");
+			if(video.paused) {
+				bofang.setAttribute("src","./public/play.png");
+				video.play();
+			}else {
+				bofang.setAttribute("src","./public/pause.png");
+				video.pause();
+			}
+		}
+		//切换
+		function nextPaly() {
+			var bofang=document.querySelector("#bofang");
+			var video=document.querySelector("#sp");
+			var src = video.src;
+			var index = srcs.indexOf(src); 
+			if(index == 2){
+				video.src = srcs[0]
+			}else{
+				video.src = srcs[index + 1];
+			}
+			//更改播放图标
+			bofang.setAttribute("src","./public/play.png");
+		}
+	</script>
+	<style>
+		.pc-class{
+			object-fit: cover;
+		}
+		@media (max-width: 450px) {
+		.pc-class {
+			display: none;	
+		}
+		.phone-class {
+			display: block !important;
+			background-size: 1500px auto !important;
+    		width: 1500px !important;
+		}
+		.ival {
+			display: none;
+		}
+		} 
+
+		.ival{
+		height: 25px;
+		width: auto;
+		}
+	</style>
+</html>
